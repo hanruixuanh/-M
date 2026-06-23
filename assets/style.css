@@ -54,8 +54,13 @@ html.sidebar-closed .nav-arrow.prev{left:0}
 .nav-arrow.disabled{opacity:0;pointer-events:none}
 @media(max-width:880px){
   .page{margin-left:0}
-  .sidebar{transform:translateX(-100%);box-shadow:0 0 30px rgba(0,0,0,.3)}
+  .sidebar{width:82vw;max-width:300px;transform:translateX(-100%);box-shadow:0 0 30px rgba(0,0,0,.3)}
   html:not(.sidebar-closed) .sidebar{transform:translateX(0)}
-  .nav-arrow.prev{left:0}
-  .page-inner{padding:1.2rem 1.2rem 4rem}
+  .toolbar{z-index:40}            /* 工具栏(含☰)层级高于侧栏,保证手机上始终点得到 */
+  /* 手机端:两侧翻页箭头改成底部角落小圆钮,不再遮挡正文 */
+  .nav-arrow{top:auto;bottom:.8rem;transform:none;width:2.5rem;height:2.5rem;border-radius:50%;
+    background:var(--side-bg);box-shadow:0 2px 8px rgba(0,0,0,.25);opacity:.9;font-size:1.5rem}
+  .nav-arrow.prev{left:.6rem}
+  .nav-arrow.next{right:.6rem}
+  .page-inner{padding:1.2rem 1.2rem 5rem}
 }
