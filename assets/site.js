@@ -24,13 +24,31 @@
     setFont:function(f){ root.setAttribute("data-font",f); LS.setItem("ppm_font",f); },
     incFont:function(d){ fi=Math.max(0,Math.min(sizes.length-1,fi+d)); LS.setItem("ppm_fsize",fi); applySize(); },
     togglePanel:function(e){ if(e){e.stopPropagation();}
-      document.getElementById("fontPanel").classList.toggle("open"); }
+      document.getElementById("fontPanel").classList.toggle("open"); },
+    openSearch:function(e){ if(e){e.stopPropagation();}
+      root.classList.remove("sidebar-closed");
+      var inner=document.querySelector(".sb-inner"); if(inner){ inner.scrollTop=0; }
+      var i=document.getElementById("ssInput"); if(i){ i.focus(); } }
   };
 
   /* ============== 全局搜索 ============== */
   function escHtml(s){ return s.replace(/[&<>"]/g,function(c){
     return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
   function escReg(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"); }
+
+  function buildSearchBtn(){
+    var tb=document.querySelector(".toolbar");
+    if(!tb||document.getElementById("ssBtn")) return;
+    var btn=document.createElement("button");
+    btn.className="tb-btn"; btn.id="ssBtn"; btn.title="搜索";
+    btn.innerHTML='<svg viewBox="0 0 24 24" width="20" height="20" fill="none" '
+      +'stroke="currentColor" stroke-width="2" stroke-linecap="round">'
+      +'<circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg>';
+    btn.addEventListener("click",function(e){ PPM.openSearch(e); });
+    var first=tb.querySelector(".tb-btn"); // 紧跟在 ☰ 后面
+    if(first&&first.nextSibling){ tb.insertBefore(btn, first.nextSibling); }
+    else{ tb.appendChild(btn); }
+  }
 
   function buildSearch(){
     var inner=document.querySelector(".sb-inner");
@@ -156,6 +174,7 @@
     BASE=/(^|\s)chapter(\s|$)/.test(document.body.className)?"../":"";
     applySize();
     buildSearch();
+    buildSearchBtn();
     highlightTarget();
     var act=document.querySelector(".sb-ch.active,.sb-part-link.active");
     if(act){ act.scrollIntoView({block:"center"}); }

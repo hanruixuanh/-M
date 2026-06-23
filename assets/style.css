@@ -50,7 +50,8 @@ html.sidebar-closed .page{margin-left:0}
 .toolbar{position:sticky;top:0;display:flex;align-items:center;gap:.3rem;
   padding:.55rem .8rem;background:var(--bg);z-index:20}
 .tb-btn{cursor:pointer;background:none;border:none;color:var(--muted);font-size:1.25rem;
-  width:2.3rem;height:2.3rem;border-radius:6px;line-height:1}
+  width:2.3rem;height:2.3rem;border-radius:6px;line-height:1;
+  display:inline-flex;align-items:center;justify-content:center;vertical-align:middle}
 .tb-btn:hover{background:var(--side-active-bg);color:var(--fg)}
 .tb-font{position:relative}
 .font-panel{position:absolute;top:2.6rem;left:0;background:var(--side-bg);border:1px solid var(--line);
