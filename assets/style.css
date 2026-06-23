@@ -1,0 +1,61 @@
+html[data-theme="white"]{--bg:#fff;--fg:#333;--muted:#999;--side-bg:#fafafa;--side-fg:#364149;--side-head:#3a4553;--line:#e6e6e6;--accent:#008cff;--side-active:#008cff;--side-active-bg:#f0f7ff;}
+html[data-theme="sepia"]{--bg:#f3eacb;--fg:#5b4636;--muted:#9a8366;--side-bg:#ece2c4;--side-fg:#5b4636;--side-head:#5b4636;--line:#dccfa6;--accent:#9b6a3f;--side-active:#9b6a3f;--side-active-bg:#e3d7b1;}
+html[data-theme="night"]{--bg:#1c1f24;--fg:#bcc0c6;--muted:#777c85;--side-bg:#22262b;--side-fg:#aeb4bf;--side-head:#cdd2da;--line:#2c3037;--accent:#3ea3ff;--side-active:#3ea3ff;--side-active-bg:#283039;}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--fg);
+  font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;transition:background .2s,color .2s}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.sidebar{position:fixed;top:0;left:0;width:300px;height:100vh;overflow-y:auto;
+  background:var(--side-bg);border-right:1px solid var(--line);transition:transform .25s ease;z-index:30}
+.sb-inner{padding:0 0 3rem}
+.sb-home{display:block;font-weight:700;color:var(--side-head);padding:1rem 1.4rem;
+  border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--side-bg)}
+.sb-list{list-style:none;margin:0;padding:.5rem 0}
+.sb-part-link{display:block;font-weight:700;color:var(--side-head);padding:.6rem 1.4rem;margin-top:.4rem}
+.sb-ch a{display:block;color:var(--side-fg);padding:.42rem 1.4rem .42rem 2rem;font-size:.95rem}
+.sb-ch a:hover,.sb-part-link:hover{background:var(--side-active-bg);text-decoration:none}
+.sb-ch.active a,.sb-part-link.active{background:var(--side-active-bg);color:var(--side-active);
+  box-shadow:inset 3px 0 0 var(--side-active)}
+.page{margin-left:300px;transition:margin .25s ease;min-height:100vh}
+html.sidebar-closed .sidebar{transform:translateX(-100%)}
+html.sidebar-closed .page{margin-left:0}
+.toolbar{position:sticky;top:0;display:flex;align-items:center;gap:.3rem;
+  padding:.55rem .8rem;background:var(--bg);z-index:20}
+.tb-btn{cursor:pointer;background:none;border:none;color:var(--muted);font-size:1.25rem;
+  width:2.3rem;height:2.3rem;border-radius:6px;line-height:1}
+.tb-btn:hover{background:var(--side-active-bg);color:var(--fg)}
+.tb-font{position:relative}
+.font-panel{position:absolute;top:2.6rem;left:0;background:var(--side-bg);border:1px solid var(--line);
+  border-radius:10px;padding:.7rem .9rem;box-shadow:0 6px 24px rgba(0,0,0,.18);display:none;min-width:210px;z-index:40}
+.font-panel.open{display:block}
+.fp-row{display:flex;align-items:center;gap:.4rem;margin:.35rem 0}
+.fp-row>span{width:2.4em;color:var(--muted);font-size:.85rem}
+.fp-btn{cursor:pointer;border:1px solid var(--line);background:var(--bg);color:var(--fg);
+  border-radius:6px;padding:.3rem .6rem;font-size:.85rem;flex:1}
+.fp-btn:hover{border-color:var(--accent)}
+.theme-w{background:#fff;color:#333}.theme-s{background:#f3eacb;color:#5b4636}.theme-n{background:#1c1f24;color:#ccc}
+.page-inner{max-width:740px;margin:0 auto;padding:1.5rem 2.4rem 5rem;
+  font-family:"Noto Serif SC",Georgia,"Songti SC",serif;font-size:18px;line-height:1.9}
+html[data-font="sans"] .page-inner{font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif}
+.page-inner h1{font-size:1.7rem;font-weight:700;margin:.4em 0 1.2em}
+.page-inner p{margin:1.05em 0}
+.chapter .page-inner p{text-indent:2em}
+.page-inner hr{border:none;border-top:1px solid var(--line);margin:1.8em 18%}
+.preface-box p:first-child{font-weight:700;font-size:1.15em}
+.byline{color:var(--muted);margin:-.6em 0 1.5em}
+.nav-arrow{position:fixed;top:50%;transform:translateY(-50%);width:2.6rem;height:3.4rem;
+  display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:2rem;
+  background:none;border:none;cursor:pointer;text-decoration:none;z-index:15}
+.nav-arrow:hover{color:var(--accent);text-decoration:none}
+.nav-arrow.prev{left:300px}.nav-arrow.next{right:0}
+html.sidebar-closed .nav-arrow.prev{left:0}
+.nav-arrow.disabled{opacity:0;pointer-events:none}
+@media(max-width:880px){
+  .page{margin-left:0}
+  .sidebar{transform:translateX(-100%);box-shadow:0 0 30px rgba(0,0,0,.3)}
+  html:not(.sidebar-closed) .sidebar{transform:translateX(0)}
+  .nav-arrow.prev{left:0}
+  .page-inner{padding:1.2rem 1.2rem 4rem}
+}
